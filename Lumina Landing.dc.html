@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face{font-family:'Montserrat';src:url('assets/Montserrat.ttf') format('truetype');font-weight:100 900;font-style:normal;font-display:swap;}
+html{scroll-behavior:smooth;background:#050509;}
+body{margin:0;background:#050509;font-family:'Montserrat',system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:#F5F3FF;overflow-x:hidden;}
+*{box-sizing:border-box;}
+a{color:#C45CFF;text-decoration:none;}
+a:hover{color:#F5F3FF;}
+::selection{background:#6C19FF;color:#F5F3FF;}
+@keyframes marquee{from{transform:translate3d(0,0,0);}to{transform:translate3d(-50%,0,0);}}
+@keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(-6deg);}50%{transform:translate3d(0,-16px,0) rotate(4deg);}}
+@keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(5deg);}50%{transform:translate3d(0,-20px,0) rotate(-5deg);}}
+@keyframes floatC{0%,100%{transform:translate3d(0,0,0) rotate(-3deg);}50%{transform:translate3d(0,-13px,0) rotate(7deg);}}
+@keyframes caret{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+@keyframes drift1{0%{transform:translate3d(-6%,4%,0) scale(1);}50%{transform:translate3d(24%,-10%,0) scale(1.22);}100%{transform:translate3d(-6%,4%,0) scale(1);}}
+@keyframes drift2{0%{transform:translate3d(12%,-6%,0) scale(1.12);}50%{transform:translate3d(-22%,10%,0) scale(0.88);}100%{transform:translate3d(12%,-6%,0) scale(1.12);}}
+@keyframes drift3{0%{transform:translate3d(0,8%,0) scale(0.95);}50%{transform:translate3d(-16%,-12%,0) scale(1.3);}100%{transform:translate3d(0,8%,0) scale(0.95);}}
+</style>
+</helmet>
+
+<div style="position:relative;width:100%;overflow-x:clip;background:#050509">
+
+<div style="position:fixed;top:0;left:0;right:0;z-index:120;display:flex;justify-content:center;padding:18px 16px 0;pointer-events:none">
+  <nav ref="{{ navRef }}" style="pointer-events:auto;position:relative;width:100%;max-width:1180px;display:flex;align-items:center;justify-content:space-between;gap:26px;padding:11px 12px 11px 24px;border-radius:999px;background:rgba(18,10,32,0.55);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(196,92,255,0.18);box-shadow:0 18px 50px -24px rgba(108,25,255,0.65),inset 0 1px 0 rgba(255,255,255,0.10);transition:max-width .72s cubic-bezier(.16,1,.3,1),padding .5s ease,background .5s ease">
+    <a href="#topo" style="display:flex;align-items:center;flex:0 0 auto">
+      <img src="assets/logo.png" alt="Lumina iStore" ref="{{ logoRef }}" style="height:30px;width:auto;display:block;transition:height .5s cubic-bezier(.16,1,.3,1)" />
+    </a>
+    <div ref="{{ linksRef }}" style="display:flex;align-items:center;gap:24px;transition:gap .6s cubic-bezier(.16,1,.3,1)">
+      <a href="#topo" style="display:flex;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#F5F3FF;white-space:nowrap" style-hover="--ly:-7px;color:#F5F3FF">
+        <span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:0ms;transform:translateY(var(--ly,0px))">I</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:28ms;transform:translateY(var(--ly,0px))">n</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:56ms;transform:translateY(var(--ly,0px))">í</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:84ms;transform:translateY(var(--ly,0px))">c</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:112ms;transform:translateY(var(--ly,0px))">i</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:140ms;transform:translateY(var(--ly,0px))">o</span>
+      </a>
+      <a href="#iphones" style="display:flex;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#F5F3FF;white-space:nowrap" style-hover="--ly:-7px;color:#F5F3FF">
+        <span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:0ms;transform:translateY(var(--ly,0px))">i</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:28ms;transform:translateY(var(--ly,0px))">P</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:56ms;transform:translateY(var(--ly,0px))">h</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:84ms;transform:translateY(var(--ly,0px))">o</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:112ms;transform:translateY(var(--ly,0px))">n</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:140ms;transform:translateY(var(--ly,0px))">e</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:168ms;transform:translateY(var(--ly,0px))">s</span>
+      </a>
+      <a href="#macs" style="display:flex;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#F5F3FF;white-space:nowrap" style-hover="--ly:-7px;color:#F5F3FF">
+        <span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:0ms;transform:translateY(var(--ly,0px))">M</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:28ms;transform:translateY(var(--ly,0px))">a</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:56ms;transform:translateY(var(--ly,0px))">c</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:84ms;transform:translateY(var(--ly,0px))">s</span>
+      </a>
+      <a href="#acessorios" style="display:flex;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#F5F3FF;white-space:nowrap" style-hover="--ly:-7px;color:#F5F3FF">
+        <span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:0ms;transform:translateY(var(--ly,0px))">A</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:28ms;transform:translateY(var(--ly,0px))">c</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:56ms;transform:translateY(var(--ly,0px))">e</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:84ms;transform:translateY(var(--ly,0px))">s</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:112ms;transform:translateY(var(--ly,0px))">s</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:140ms;transform:translateY(var(--ly,0px))">ó</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:168ms;transform:translateY(var(--ly,0px))">r</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:196ms;transform:translateY(var(--ly,0px))">i</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:224ms;transform:translateY(var(--ly,0px))">o</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:252ms;transform:translateY(var(--ly,0px))">s</span>
+      </a>
+      <a href="#sobre" style="display:flex;gap:4px;font-size:13.5px;font-weight:600;letter-spacing:.02em;color:#F5F3FF;white-space:nowrap" style-hover="--ly:-7px;color:#F5F3FF">
+        <span style="display:flex"><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:0ms;transform:translateY(var(--ly,0px))">S</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:28ms;transform:translateY(var(--ly,0px))">o</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:56ms;transform:translateY(var(--ly,0px))">b</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:84ms;transform:translateY(var(--ly,0px))">r</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:112ms;transform:translateY(var(--ly,0px))">e</span></span><span style="display:flex"><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:140ms;transform:translateY(var(--ly,0px))">n</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:168ms;transform:translateY(var(--ly,0px))">ó</span><span style="display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.25,1.35);transition-delay:196ms;transform:translateY(var(--ly,0px))">s</span></span>
+      </a>
+    </div>
+    <button type="button" onClick="{{ toggleMenu }}" ref="{{ burgerRef }}" aria-label="Abrir menu" style="display:none;flex:0 0 auto;align-items:center;justify-content:center;width:40px;height:40px;padding:0;border-radius:999px;cursor:pointer;background:rgba(245,243,255,0.06);border:1px solid rgba(201,198,216,0.22);color:#F5F3FF;font-size:16px;line-height:1;font-family:'Montserrat',sans-serif">☰</button>
+    <div style="position:absolute;top:calc(100% + 10px);left:0;right:0;flex-direction:column;gap:4px;padding:14px;border-radius:24px;background:rgba(18,10,32,0.92);backdrop-filter:blur(22px) saturate(180%);-webkit-backdrop-filter:blur(22px) saturate(180%);border:1px solid rgba(196,92,255,0.18);box-shadow:0 22px 60px -26px rgba(108,25,255,0.9);display:{{ panelDisplay }}">
+      <a href="#topo" onClick="{{ closeMenu }}" style="padding:12px 14px;border-radius:14px;font-size:14px;font-weight:600;color:#F5F3FF" style-hover="background:rgba(155,61,255,0.16);color:#F5F3FF">Início</a>
+      <a href="#iphones" onClick="{{ closeMenu }}" style="padding:12px 14px;border-radius:14px;font-size:14px;font-weight:600;color:#F5F3FF" style-hover="background:rgba(155,61,255,0.16);color:#F5F3FF">iPhones</a>
+      <a href="#macs" onClick="{{ closeMenu }}" style="padding:12px 14px;border-radius:14px;font-size:14px;font-weight:600;color:#F5F3FF" style-hover="background:rgba(155,61,255,0.16);color:#F5F3FF">Macs</a>
+      <a href="#acessorios" onClick="{{ closeMenu }}" style="padding:12px 14px;border-radius:14px;font-size:14px;font-weight:600;color:#F5F3FF" style-hover="background:rgba(155,61,255,0.16);color:#F5F3FF">Acessórios</a>
+      <a href="#sobre" onClick="{{ closeMenu }}" style="padding:12px 14px;border-radius:14px;font-size:14px;font-weight:600;color:#F5F3FF" style-hover="background:rgba(155,61,255,0.16);color:#F5F3FF">Sobre nós</a>
+    </div>
+    <a href="https://wa.me/5511987654321" target="_blank" rel="noopener" ref="{{ waRef }}" style="flex:0 0 auto;display:flex;align-items:center;gap:9px;padding:11px 20px;border-radius:999px;background:linear-gradient(135deg,#6C19FF 0%,#9B3DFF 100%);color:#F5F3FF;font-size:13px;font-weight:700;letter-spacing:.01em;white-space:nowrap;box-shadow:0 10px 30px -12px rgba(108,25,255,0.9);transition:transform .35s cubic-bezier(.2,.9,.25,1.3),box-shadow .35s ease,filter .35s ease" style-hover="transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(155,61,255,1);filter:brightness(1.08);color:#F5F3FF">
+      <img src="assets/ic-whatsapp.svg" alt="" style="width:16px;height:16px;display:block" />
+      <span ref="{{ waLabelRef }}">Falar no WhatsApp</span>
+    </a>
+  </nav>
+</div>
+
+<section id="topo" style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#050509">
+  <video ref="{{ videoRef }}" autoplay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsinline="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.82">
+    <source src="assets/hero-bg.mp4" type="video/mp4" />
+  </video>
+  <div style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(5,5,9,0.88) 0%,rgba(5,5,9,0.62) 40%,rgba(25,0,47,0.22) 72%,rgba(5,5,9,0.55) 100%)"></div>
+  <div style="position:absolute;inset:auto 0 0 0;height:300px;background:linear-gradient(to top,#050509 0%,rgba(5,5,9,0.92) 28%,rgba(5,5,9,0) 100%)"></div>
+
+  <div style="position:relative;z-index:2;width:100%;max-width:1320px;margin:0 auto;padding:132px 7vw 96px">
+    <div style="max-width:660px;display:flex;flex-direction:column;align-items:flex-start;gap:24px">
+      <h1 data-reveal="1" style="margin:0;font-size:clamp(28px,3.7vw,50px);line-height:1.08;font-weight:800;letter-spacing:-0.03em;color:#F5F3FF;text-wrap:balance">iPhones e acessórios originais<br /><span style="background:linear-gradient(100deg,#9B3DFF 0%,#C45CFF 45%,#F5F3FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent">e experiência premium</span></h1>
+      <p data-reveal="1" style="margin:0;max-width:560px;font-size:clamp(14px,1.05vw,16.5px);line-height:1.68;font-weight:400;color:#C9C6D8;text-wrap:pretty">Tecnologia de ponta, design refinado e a garantia do ecossistema Apple em suas mãos. Eleve sua experiência digital ao nível do amanhã.</p>
+      <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:6px">
+        <a href="#iphones" style="display:inline-flex;align-items:center;gap:12px;padding:18px 34px;border-radius:999px;background:linear-gradient(120deg,#6C19FF 0%,#6C19FF 100%);color:#F5F3FF;font-size:15px;font-weight:700;letter-spacing:.01em;box-shadow:0 18px 44px -18px rgba(108,25,255,0.95);transition:transform .45s cubic-bezier(.2,.9,.25,1.3),background .55s ease,box-shadow .45s ease,letter-spacing .45s ease" style-hover="transform:scale(1.06);background:linear-gradient(120deg,#6C19FF 0%,#9B3DFF 48%,#C45CFF 100%);box-shadow:0 26px 60px -18px rgba(196,92,255,0.95);letter-spacing:.03em;color:#F5F3FF">
+          <span>Explorar produtos</span>
+          <span style="font-size:17px;line-height:1">→</span>
+        </a>
+        <a href="https://wa.me/5511987654321" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:11px;padding:17px 30px;border-radius:999px;background:rgba(245,243,255,0.05);border:1px solid rgba(201,198,216,0.30);color:#F5F3FF;font-size:15px;font-weight:600;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .4s cubic-bezier(.2,.9,.25,1.3),border-color .4s ease,background .4s ease" style-hover="transform:translateY(-3px);border-color:rgba(196,92,255,0.75);background:rgba(155,61,255,0.14);color:#F5F3FF">
+          <span>Falar com um especialista</span>
+          <img src="assets/ic-whatsapp.svg" alt="" style="width:17px;height:17px;display:block" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="acessorios" style="position:relative;padding:34px 0 90px;background:transparent">
+  <div aria-hidden="true" style="position:absolute;top:-20%;left:5%;width:44vw;height:44vw;border-radius:50%;background:radial-gradient(circle,rgba(108,25,255,0.20) 0%,rgba(108,25,255,0) 68%);animation:drift1 46s ease-in-out infinite;pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;bottom:-25%;right:0;width:38vw;height:38vw;border-radius:50%;background:radial-gradient(circle,rgba(196,92,255,0.16) 0%,rgba(196,92,255,0) 68%);animation:drift2 58s ease-in-out infinite;pointer-events:none"></div>
+
+  <div data-reveal="1" style="position:relative;max-width:1320px;margin:0 auto 52px;padding:0 7vw;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center">
+    <span style="font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#9B3DFF">Categorias</span>
+    <h2 style="margin:0;font-size:clamp(26px,3vw,40px);font-weight:800;letter-spacing:-0.02em;color:#F5F3FF">Tudo o que o seu setup pede</h2>
+  </div>
+  <div style="position:relative;width:100%;overflow:hidden">
+    <div style="display:flex;width:max-content;animation:marquee 40s linear infinite;padding:34px 0;will-change:transform" style-hover="animation-play-state:paused">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="12">
+        <div style="flex:0 0 auto;width:148px;display:flex;flex-direction:column;align-items:center;gap:14px">
+          <div style="position:relative;width:100px;height:100px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(38,26,58,0.55);border:1px solid rgba(201,198,216,0.16);box-shadow:inset 0 1px 0 rgba(255,255,255,0.10);transition:transform .45s cubic-bezier(.2,.9,.25,1.35),box-shadow .45s ease,border-color .45s ease" style-hover="transform:translateY(-10px) scale(1.09);border-color:rgba(196,92,255,0.7);box-shadow:0 0 0 1px rgba(196,92,255,0.35),0 22px 60px -14px rgba(108,25,255,0.95),inset 0 1px 0 rgba(255,255,255,0.18)">
+            <span role="img" aria-label="{{ c.label }}" style="width:40px;height:40px;display:block;background-repeat:no-repeat;background-position:center;background-size:contain;background-image:{{ c.bg }}"></span>
+          </div>
+          <span style="font-size:13px;font-weight:600;letter-spacing:.02em;color:#C9C6D8">{{ c.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div aria-hidden="true" style="position:absolute;top:0;bottom:0;left:0;width:11%;background:linear-gradient(to right,#050509 15%,rgba(5,5,9,0) 100%);pointer-events:none"></div>
+    <div aria-hidden="true" style="position:absolute;top:0;bottom:0;right:0;width:11%;background:linear-gradient(to left,#050509 15%,rgba(5,5,9,0) 100%);pointer-events:none"></div>
+  </div>
+</section>
+
+<section id="iphones" style="position:relative;padding:40px 0 40px;background:transparent">
+  <div aria-hidden="true" style="position:absolute;top:10%;right:-8%;width:46vw;height:46vw;border-radius:50%;background:radial-gradient(circle,rgba(155,61,255,0.18) 0%,rgba(155,61,255,0) 68%);animation:drift3 64s ease-in-out infinite;pointer-events:none"></div>
+  <div aria-hidden="true" style="position:absolute;bottom:0;left:-10%;width:40vw;height:40vw;border-radius:50%;background:radial-gradient(circle,rgba(108,25,255,0.16) 0%,rgba(108,25,255,0) 68%);animation:drift1 72s ease-in-out infinite;pointer-events:none"></div>
+
+  <div style="position:relative;max-width:1320px;margin:0 auto;padding:0 7vw">
+    <div data-reveal="1" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:46px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#9B3DFF">Em destaque</span>
+        <h2 style="margin:0;font-size:clamp(28px,3.4vw,46px);font-weight:800;letter-spacing:-0.025em;color:#F5F3FF">Os favoritos da Lumina</h2>
+      </div>
+      <p style="margin:0;max-width:380px;font-size:14.5px;line-height:1.65;color:#C9C6D8">Selecionados pelo time da loja. Todos originais, lacrados e com garantia.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:26px;perspective:1600px">
+      <sc-for list="{{ featured }}" as="p" hint-placeholder-count="3">
+        <article data-reveal="1" style="display:flex;flex-direction:column;gap:16px;padding:16px;border-radius:26px;background:linear-gradient(165deg,rgba(25,0,47,0.85) 0%,rgba(10,7,18,0.9) 100%);border:1px solid rgba(201,198,216,0.12);box-shadow:0 30px 70px -40px rgba(0,0,0,1);transform:rotateX(5deg) translateZ(0);transform-origin:50% 100%;transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s ease,border-color .6s ease" style-hover="transform:rotateX(0deg) translateY(-12px);box-shadow:0 44px 90px -40px rgba(108,25,255,0.85);border-color:rgba(196,92,255,0.42)">
+          <div style="position:relative;width:100%;aspect-ratio:4/5;border-radius:18px;overflow:hidden;background:#FFFFFF;border:1px solid rgba(201,198,216,0.14)">
+            <span role="img" aria-label="{{ p.name }}" style="position:absolute;inset:0;display:block;background-repeat:no-repeat;background-position:center;background-size:contain;background-image:{{ p.bg }}"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;padding:0 4px">
+            <h3 style="margin:0;font-size:17px;font-weight:700;letter-spacing:-0.01em;color:#F5F3FF">{{ p.name }}</h3>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-size:13px;letter-spacing:.08em;color:#FFC83D">★★★★★</span>
+              <span style="font-size:12.5px;font-weight:600;color:#F5F3FF">{{ p.rating }}</span>
+              <span style="font-size:12.5px;color:#C9C6D8">({{ p.reviews }} avaliações)</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 4px 4px;margin-top:auto;border-top:1px solid rgba(201,198,216,0.12)">
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#C9C6D8">a partir de</span>
+              <span style="font-size:21px;font-weight:800;letter-spacing:-0.02em;color:#F5F3FF">{{ p.price }}</span>
+            </div>
+            <a href="https://wa.me/5511987654321" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;background:linear-gradient(135deg,#6C19FF,#9B3DFF);color:#F5F3FF;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:0 12px 30px -14px rgba(108,25,255,0.95);transition:transform .35s cubic-bezier(.2,.9,.25,1.3),filter .35s ease" style-hover="transform:scale(1.05);filter:brightness(1.12);color:#F5F3FF">Comprar agora</a>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+
+    <div id="macs" data-reveal="1" style="position:relative;z-index:4;margin-top:80px;border-radius:24px;overflow:hidden;border:1px solid rgba(201,198,216,0.12);transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s ease,border-color .6s ease" style-hover="transform:translateY(-6px) scale(1.012);box-shadow:0 40px 90px -42px rgba(155,61,255,0.95);border-color:rgba(196,92,255,0.45)">
+      <a href="https://wa.me/5511987654321" target="_blank" rel="noopener" style="display:block">
+        <img src="assets/banner-alienware.png" alt="Dê um upgrade no seu setup com a linha Alienware" style="display:block;width:100%;height:auto" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<div style="position:relative">
+  <section id="sobre" style="position:sticky;top:0;height:100vh;min-height:600px;display:flex;align-items:center;padding:60px 0 60px;background:transparent">
+    <div aria-hidden="true" style="position:absolute;top:8%;right:6%;width:48vw;height:48vw;border-radius:50%;background:radial-gradient(circle,rgba(108,25,255,0.22) 0%,rgba(108,25,255,0) 66%);animation:drift2 68s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:0 7vw;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(36px,4vw,64px);align-items:center">
+      <div data-reveal="1" style="display:flex;flex-direction:column;gap:22px">
+        <span style="font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#9B3DFF">Sobre a Lumina</span>
+        <h2 onMouseMove="{{ onGlow }}" onMouseLeave="{{ offGlow }}" style="margin:0;font-size:clamp(28px,3.4vw,46px);font-weight:800;line-height:1.14;letter-spacing:-0.025em;color:#F5F3FF;text-wrap:balance;cursor:default">
+          <span ref="{{ glowRef }}" style="background-image:radial-gradient(26ch 4ch at var(--gx,-999px) var(--gy,-999px),#C45CFF 0%,#9B3DFF 38%,#F5F3FF 72%);background-color:#F5F3FF;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 34px rgba(196,92,255,0.45);transition:text-shadow .4s ease">Iluminando</span> o futuro da sua experiência Apple.
+        </h2>
+        <p style="margin:0;max-width:540px;font-size:16px;line-height:1.9;color:#C9C6D8;text-wrap:pretty">A Lumina nasceu com uma <strong style="color:#F5F3FF;font-weight:700">missão clara</strong>: <strong style="color:#F5F3FF;font-weight:700">redefinir o conceito de tecnologia premium</strong> e transformar a maneira como você se conecta ao <strong style="color:#F5F3FF;font-weight:700">ecossistema Apple</strong>. Mais do que vender dispositivos, nós entregamos <span style="color:#F5F3FF;font-weight:600;background-image:linear-gradient(transparent 58%,rgba(155,61,255,0.42) 58%,rgba(108,25,255,0.42) 92%,transparent 92%);box-decoration-break:clone;-webkit-box-decoration-break:clone;padding:0 2px">alta performance, confiança e uma experiência visual e tátil pensada em cada detalhe</span>.</p>
+      </div>
+      <div data-reveal="1" style="position:relative;display:flex;align-items:center;justify-content:center;padding:44px 30px 48px">
+        <img src="assets/loja.png" alt="Loja Lumina iStore" style="position:relative;z-index:1;width:100%;max-width:500px;max-height:46vh;height:auto;object-fit:cover;border-radius:22px;border:1px solid rgba(201,198,216,0.18);box-shadow:0 46px 100px -46px rgba(108,25,255,0.95)" />
+        <img src="assets/emo-iphone.png" alt="" style="position:absolute;z-index:2;top:0;left:3%;width:clamp(58px,6.6vw,96px);height:auto;filter:drop-shadow(0 18px 34px rgba(0,0,0,0.7));animation:floatA 6.5s ease-in-out infinite" />
+        <img src="assets/emo-mac.png" alt="" style="position:absolute;z-index:2;bottom:0;left:11%;width:clamp(82px,9.2vw,134px);height:auto;filter:drop-shadow(0 18px 34px rgba(0,0,0,0.7));animation:floatB 7.8s ease-in-out infinite" />
+        <img src="assets/emo-watch.png" alt="" style="position:absolute;z-index:2;top:14%;right:0;width:clamp(52px,5.8vw,84px);height:auto;filter:drop-shadow(0 18px 34px rgba(0,0,0,0.7));animation:floatC 5.9s ease-in-out infinite" />
+      </div>
+    </div>
+  </section>
+
+  <div aria-hidden="true" style="height:75vh"></div>
+
+  <div style="position:relative;z-index:3">
+    <div style="height:clamp(100px,13vw,180px);margin:0 -16vw;background:#F5F3FF;border-radius:50% 50% 0 0/100% 100% 0 0"></div>
+    <section style="background:#F5F3FF;color:#19002F;padding:20px 0 110px;margin-top:-1px">
+      <div style="max-width:1320px;margin:0 auto;padding:0 7vw">
+        <div data-reveal="1" style="display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;margin-bottom:38px">
+          <span style="font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#6C19FF">Nossos melhores produtos</span>
+          <h2 style="margin:0;font-size:clamp(28px,3.4vw,46px);font-weight:800;letter-spacing:-0.025em;color:#19002F;text-wrap:balance">Encontre o iPhone perfeito pra você</h2>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:44px">
+          <sc-for list="{{ filters }}" as="f" hint-placeholder-count="6">
+            <button type="button" onClick="{{ f.onClick }}" style="font-family:'Montserrat',sans-serif;cursor:pointer;padding:12px 24px;border-radius:999px;font-size:13.5px;font-weight:700;letter-spacing:.01em;border:1px solid {{ f.border }};background:{{ f.bg }};color:{{ f.fg }};transition:transform .3s cubic-bezier(.2,.9,.25,1.3),background .3s ease,color .3s ease,border-color .3s ease" style-hover="transform:translateY(-2px)">{{ f.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,262px),1fr));gap:22px">
+          <sc-for list="{{ products }}" as="p" hint-placeholder-count="8">
+            <article style="display:flex;flex-direction:column;gap:16px;padding:16px;border-radius:24px;background:#FFFFFF;border:1px solid rgba(25,0,47,0.08);box-shadow:0 18px 44px -32px rgba(25,0,47,0.5);transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s ease,border-color .5s ease" style-hover="transform:translateY(-10px);box-shadow:0 36px 70px -34px rgba(108,25,255,0.55);border-color:rgba(108,25,255,0.28)">
+              <div style="position:relative;width:100%;aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:#FFFFFF;border:1px solid rgba(25,0,47,0.07)">
+                <span role="img" aria-label="{{ p.name }}" style="position:absolute;inset:0;display:block;background-repeat:no-repeat;background-position:center;background-size:contain;background-image:{{ p.bg }}"></span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:7px;padding:0 3px">
+                <h3 style="margin:0;font-size:15.5px;font-weight:700;letter-spacing:-0.01em;color:#19002F">{{ p.name }}</h3>
+                <div style="display:flex;align-items:center;gap:7px">
+                  <span style="font-size:12.5px;letter-spacing:.08em;color:#FFB300">★★★★★</span>
+                  <span style="font-size:12px;font-weight:600;color:#19002F">{{ p.rating }}</span>
+                  <span style="font-size:12px;color:#6B6480">({{ p.reviews }})</span>
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:12px;margin-top:auto;border-top:1px solid rgba(25,0,47,0.08)">
+                <span style="font-size:19px;font-weight:800;letter-spacing:-0.02em;color:#19002F">{{ p.price }}</span>
+                <a href="https://wa.me/5511987654321" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:11px 17px;border-radius:999px;background:#6C19FF;color:#F5F3FF;font-size:12.5px;font-weight:700;white-space:nowrap;transition:transform .35s cubic-bezier(.2,.9,.25,1.3),background .35s ease" style-hover="transform:scale(1.05);background:linear-gradient(135deg,#6C19FF,#C45CFF);color:#F5F3FF">Comprar</a>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F5F3FF;padding:20px 0 120px">
+      <div style="max-width:1320px;margin:0 auto;padding:0 7vw">
+        <div data-reveal="1" style="display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center;margin-bottom:44px">
+          <span style="font-size:11.5px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#6C19FF">Depoimentos</span>
+          <h2 style="margin:0;font-size:clamp(28px,3.4vw,46px);font-weight:800;letter-spacing:-0.025em;color:#19002F">Quem compra, aprova</h2>
+        </div>
+        <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0;border-radius:26px;overflow:hidden;background:#FFFFFF;border:1px solid rgba(25,0,47,0.08);box-shadow:0 30px 70px -44px rgba(25,0,47,0.6)">
+          <div style="position:relative;min-height:340px;background:#EDEAF8;overflow:hidden">
+            <span role="img" aria-label="{{ tName }}" style="position:absolute;inset:0;display:block;background-repeat:no-repeat;background-size:cover;background-image:{{ tPhoto }};background-position:{{ tPos }};transition:background-image .5s ease"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;gap:26px;padding:clamp(28px,3.4vw,52px)">
+            <span style="font-size:44px;line-height:.6;font-weight:800;color:#C6C2E8">“</span>
+            <p style="margin:0;font-size:clamp(15px,1.35vw,19px);line-height:1.7;font-weight:500;color:#3A3352;min-height:8.5em;text-wrap:pretty">{{ typed }}<span style="display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-0.13em;background:#6C19FF;animation:caret 1s steps(1) infinite"></span></p>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:22px;border-top:1px solid rgba(25,0,47,0.08)">
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span style="font-size:15px;font-weight:700;color:#19002F">{{ tName }}</span>
+                <span style="font-size:13px;color:#6B6480">{{ tRole }}</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:14px">
+                <span style="font-size:14px;letter-spacing:.1em;color:#FFB300">★★★★★</span>
+                <div style="display:flex;gap:7px">
+                  <sc-for list="{{ dots }}" as="d" hint-placeholder-count="3">
+                    <button type="button" onClick="{{ d.onClick }}" aria-label="Ver depoimento" style="cursor:pointer;padding:0;width:{{ d.w }};height:7px;border-radius:999px;border:none;background:{{ d.bg }};transition:width .4s ease,background .4s ease"></button>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:#F5F3FF;padding:0 0 110px">
+      <div data-reveal="1" style="max-width:1320px;margin:0 auto;padding:0 7vw">
+        <a href="https://wa.me/5511987654321" target="_blank" rel="noopener" style="display:block;border-radius:24px;overflow:hidden;transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s ease" style-hover="transform:translateY(-6px) scale(1.012);box-shadow:0 40px 90px -42px rgba(108,25,255,0.9)">
+          <img src="assets/banner-frete.png" alt="Frete grátis para todo Brasil" style="display:block;width:100%;height:auto" />
+        </a>
+      </div>
+    </section>
+
+    <footer ref="{{ footerRef }}" style="background:#050509;padding:76px 0 30px">
+      <div style="max-width:1320px;margin:0 auto;padding:0 7vw;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1.15fr) minmax(0,1.2fr);gap:36px">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <img src="assets/logo.png" alt="Lumina iStore" style="height:42px;width:auto;max-width:100%;object-fit:contain;object-position:left;display:block" />
+          <p style="margin:0;font-size:13px;line-height:1.7;color:#C9C6D8">A Lumina iStore é uma loja especializada em produtos Apple, oferecendo tecnologia, qualidade e confiança para você.</p>
+          <div style="display:flex;gap:16px;align-items:center">
+            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;justify-content:center;width:26px;height:26px">
+              <span style="width:22px;height:22px;display:block;background:#F5F3FF;-webkit-mask-image:url('assets/ic-instagram.svg');mask-image:url('assets/ic-instagram.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transition:transform .35s cubic-bezier(.2,.9,.25,1.35),background .35s ease" style-hover="transform:scale(1.22);background:linear-gradient(45deg,#FCAF45 0%,#F77737 30%,#E1306C 62%,#833AB4 100%)"></span>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" style="display:flex;align-items:center;justify-content:center;width:26px;height:26px">
+              <span style="width:22px;height:22px;display:block;background:#F5F3FF;-webkit-mask-image:url('assets/ic-facebook.svg');mask-image:url('assets/ic-facebook.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transition:transform .35s cubic-bezier(.2,.9,.25,1.35),background .35s ease" style-hover="transform:scale(1.22);background:#1877F2"></span>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube" style="display:flex;align-items:center;justify-content:center;width:26px;height:26px">
+              <span style="width:24px;height:24px;display:block;background:#F5F3FF;-webkit-mask-image:url('assets/ic-youtube.svg');mask-image:url('assets/ic-youtube.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transition:transform .35s cubic-bezier(.2,.9,.25,1.35),background .35s ease" style-hover="transform:scale(1.22);background:#FF0000"></span>
+            </a>
+            <a href="https://wa.me/5511987654321" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:flex;align-items:center;justify-content:center;width:26px;height:26px">
+              <span style="width:22px;height:22px;display:block;background:#F5F3FF;-webkit-mask-image:url('assets/ic-whatsapp.svg');mask-image:url('assets/ic-whatsapp.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transition:transform .35s cubic-bezier(.2,.9,.25,1.35),background .35s ease" style-hover="transform:scale(1.22);background:#25D366"></span>
+            </a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#9B3DFF">Navegação</span>
+          <a href="#topo" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Início</a>
+          <a href="#iphones" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">iPhones</a>
+          <a href="#macs" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Macs</a>
+          <a href="#acessorios" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Acessórios</a>
+          <a href="#sobre" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Sobre nós</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#9B3DFF">Informações</span>
+          <a href="#topo" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Formas de pagamento</a>
+          <a href="#topo" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Trocas e devoluções</a>
+          <a href="#topo" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Política de privacidade</a>
+          <a href="#topo" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Termos de uso</a>
+          <a href="#topo" style="font-size:13px;color:#C9C6D8;width:fit-content;transition:transform .3s cubic-bezier(.2,.9,.25,1.3),color .3s ease" style-hover="color:#F5F3FF;transform:translateX(6px)">Garantia</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#9B3DFF">Contato</span>
+          <span style="font-size:13px;color:#C9C6D8">(11) 98765-4321</span>
+          <span style="font-size:13px;color:#C9C6D8;word-break:break-word">contato@luminaistore.com.br</span>
+          <span style="font-size:13px;line-height:1.6;color:#C9C6D8">Rua das Palmeiras, 123<br />Vila Olímpia — São Paulo/SP</span>
+          <span style="font-size:13px;line-height:1.6;color:#C9C6D8">Seg a Sex: 9h às 18h<br />Sáb: 9h às 13h</span>
+        </div>
+      </div>
+      <div style="max-width:1320px;margin:48px auto 0;padding:22px 7vw 0;border-top:1px solid rgba(201,198,216,0.10);display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:center">
+        <span style="font-size:12px;color:rgba(201,198,216,0.7)">© 2026 Lumina iStore. Todos os direitos reservados.</span>
+        <span style="font-size:12px;color:rgba(201,198,216,0.35)">•</span>
+        <a href="https://aurum.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:rgba(201,198,216,0.7)" style-hover="--aw:#FF4200;--am:#FFFFFF;color:rgba(201,198,216,0.7)">
+          <span>Criado pela</span>
+          <span aria-label="Aurum" role="img" style="position:relative;display:block;width:60px;height:14.1px">
+            <span style="position:absolute;inset:0;display:block;background:var(--am,#FF4200);-webkit-mask-image:url('assets/aurum-mark.svg');mask-image:url('assets/aurum-mark.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transition:background .3s ease"></span>
+            <span style="position:absolute;inset:0;display:block;background:var(--aw,#ECECEC);-webkit-mask-image:url('assets/aurum-word.svg');mask-image:url('assets/aurum-word.svg');-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;transition:background .3s ease"></span>
+          </span>
+        </a>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<div ref="{{ glassRef }}" aria-hidden="true" style="position:fixed;left:-12vw;right:-12vw;bottom:0;height:150px;z-index:90;pointer-events:none;transform:translateZ(0);backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);transition:opacity .35s linear;-webkit-mask-image:radial-gradient(130% 112% at 50% 118%,#000 42%,rgba(0,0,0,0.55) 66%,transparent 84%);mask-image:radial-gradient(130% 112% at 50% 118%,#000 42%,rgba(0,0,0,0.55) 66%,transparent 84%)"></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const IMG_IPHONE = "url('assets/prod-iphone17pm.png')";
+const IMG_MAC = "url('assets/prod-macbook.png')";
+const IMG_WATCH = "url('assets/prod-watch.png')";
+
+const CATS = [
+  { label: "Celulares", icon: "assets/ic-phone.svg" },
+  { label: "Áudio", icon: "assets/ic-audio.svg" },
+  { label: "Computadores", icon: "assets/ic-computers.svg" },
+  { label: "Smart Home", icon: "assets/ic-smarthome.svg" },
+  { label: "Gaming", icon: "assets/ic-gaming.svg" },
+  { label: "Gadgets", icon: "assets/ic-gadgets.svg" }
+];
+
+const FEATURED = [
+  { name: "iPhone 17 Pro Max 256GB", rating: "5.0", reviews: "118", price: "R$ 11.499", bg: IMG_IPHONE },
+  { name: "MacBook Air M3 13\" 512GB", rating: "4.9", reviews: "264", price: "R$ 8.799", bg: IMG_MAC },
+  { name: "Apple Watch SE 44mm GPS", rating: "4.8", reviews: "391", price: "R$ 2.299", bg: IMG_WATCH }
+];
+
+const CATALOG = [
+  { g: "iPhone SE", name: "iPhone SE 1ª geração", rating: "4.6", reviews: "128", price: "R$ 1.399", bg: "url('assets/ip/se1.png')" },
+  { g: "iPhone SE", name: "iPhone SE 2ª geração", rating: "4.7", reviews: "214", price: "R$ 1.899", bg: "url('assets/ip/se2.png')" },
+  { g: "iPhone SE", name: "iPhone SE 3ª geração", rating: "4.8", reviews: "176", price: "R$ 2.499", bg: "url('assets/ip/se3.png')" },
+  { g: "iPhone 14", name: "iPhone 14", rating: "4.8", reviews: "412", price: "R$ 3.999", bg: "url('assets/ip/14.png')" },
+  { g: "iPhone 14", name: "iPhone 14 Plus", rating: "4.7", reviews: "208", price: "R$ 4.499", bg: "url('assets/ip/14plus.png')" },
+  { g: "iPhone 14", name: "iPhone 14 Pro", rating: "4.9", reviews: "331", price: "R$ 5.299", bg: "url('assets/ip/14pro.png')" },
+  { g: "iPhone 14", name: "iPhone 14 Pro Max", rating: "4.9", reviews: "287", price: "R$ 5.999", bg: "url('assets/ip/14promax.png')" },
+  { g: "iPhone 15", name: "iPhone 15", rating: "4.9", reviews: "523", price: "R$ 4.799", bg: "url('assets/ip/15.png')" },
+  { g: "iPhone 15", name: "iPhone 15 Plus", rating: "4.8", reviews: "241", price: "R$ 5.299", bg: "url('assets/ip/15plus.png')" },
+  { g: "iPhone 15", name: "iPhone 15 Pro", rating: "4.9", reviews: "604", price: "R$ 6.499", bg: "url('assets/ip/15pro.png')" },
+  { g: "iPhone 15", name: "iPhone 15 Pro Max", rating: "5.0", reviews: "488", price: "R$ 7.299", bg: "url('assets/ip/15promax.png')" },
+  { g: "iPhone 16", name: "iPhone 16", rating: "4.9", reviews: "377", price: "R$ 5.799", bg: "url('assets/ip/16.png')" },
+  { g: "iPhone 16", name: "iPhone 16 Plus", rating: "4.8", reviews: "190", price: "R$ 6.299", bg: "url('assets/ip/16plus.png')" },
+  { g: "iPhone 16", name: "iPhone 16 Pro", rating: "4.9", reviews: "412", price: "R$ 7.699", bg: "url('assets/ip/16pro.png')" },
+  { g: "iPhone 16", name: "iPhone 16 Pro Max", rating: "5.0", reviews: "356", price: "R$ 8.499", bg: "url('assets/ip/16promax.png')" },
+  { g: "iPhone 17", name: "iPhone 17", rating: "4.9", reviews: "164", price: "R$ 6.999", bg: "url('assets/ip/17.png')" },
+  { g: "iPhone 17", name: "iPhone 17 Air", rating: "4.8", reviews: "92", price: "R$ 7.499", bg: "url('assets/ip/17air.png')" },
+  { g: "iPhone 17", name: "iPhone 17 Pro", rating: "5.0", reviews: "131", price: "R$ 9.299", bg: "url('assets/ip/17pro.png')" },
+  { g: "iPhone 17", name: "iPhone 17 Pro Max", rating: "5.0", reviews: "118", price: "R$ 11.499", bg: "url('assets/ip/17promax.png')" }
+];
+
+const FILTERS = ["TODOS", "iPhone SE", "iPhone 14", "iPhone 15", "iPhone 16", "iPhone 17"];
+
+const TESTIMONIALS = [
+  {
+    quote: "\"Atendimento impecável e agilidade surreal. Comprei meu iPhone 15 Pro Max com a Lumina e o processo do início ao fim foi extremamente transparente. O aparelho veio perfeito, 100% lacrado e a entrega foi rápida demais. Destaque para o suporte no WhatsApp, que tirou todas as minhas dúvidas em minutos!\"",
+    name: "Lucas Andrade",
+    role: "Empresário & Creator",
+    photo: "url('assets/cli-lucas.png')",
+    pos: "50% 41%"
+  },
+  {
+    quote: "\"Estava precisando dar um upgrade pesado no meu setup de trabalho e a Lumina facilitou tudo. Peguei o MacBook M3 e um monitor Alienware no mesmo pedido. A curadoria de produtos deles é de outro nível e os acessórios que vieram de acompanhamento são todos originais de verdade. Ganharam um cliente fiel.\"",
+    name: "Matheus Vasconcelos",
+    role: "Designer & Produtor Multimídia",
+    photo: "url('assets/cli-matheus.png')",
+    pos: "50% 50%"
+  },
+  {
+    quote: "\"Fazer upgrade de ecossistema com a Lumina é outra experiência. Eles valorizaram meu seminovo e a negociação foi muito justa. Dá para sentir o cuidado com o cliente desde a navegação na Landing Page até o pós-venda. Recomendando de olhos fechados pra todo mundo!\"",
+    name: "Camila Pinheiro",
+    role: "Arquiteta",
+    photo: "url('assets/cli-camila.png')",
+    pos: "50% 18%"
+  }
+];
+
+class Component extends DCLogic {
+  state = { filter: "TODOS", ti: 0, chars: 0, menuOpen: false };
+
+  navRef = React.createRef();
+  logoRef = React.createRef();
+  linksRef = React.createRef();
+  glowRef = React.createRef();
+  burgerRef = React.createRef();
+  waRef = React.createRef();
+  waLabelRef = React.createRef();
+  videoRef = React.createRef();
+  footerRef = React.createRef();
+  glassRef = React.createRef();
+
+  setNav(mode) {
+    const n = this.navRef.current;
+    if (!n) return;
+    const compact = window.innerWidth < 900;
+    if (mode === "wide") {
+      n.style.maxWidth = "1180px";
+      n.style.padding = "11px 12px 11px 24px";
+      n.style.background = "rgba(18,10,32,0.55)";
+      if (this.logoRef.current) this.logoRef.current.style.height = "30px";
+      if (this.linksRef.current && !compact) this.linksRef.current.style.gap = "24px";
+    } else if (mode === "expanded") {
+      n.style.maxWidth = "1320px";
+      n.style.padding = "11px 14px 11px 30px";
+      if (this.linksRef.current && !compact) this.linksRef.current.style.gap = "40px";
+    } else {
+      n.style.maxWidth = compact ? "560px" : "800px";
+      n.style.padding = "7px 7px 7px 20px";
+      n.style.background = "rgba(18,10,32,0.74)";
+      if (this.logoRef.current) this.logoRef.current.style.height = "24px";
+      if (this.linksRef.current && !compact) this.linksRef.current.style.gap = "18px";
+    }
+  }
+
+  componentDidMount() {
+    this.phase = "wide";
+    this.onScroll = () => {
+      const y = window.scrollY;
+      if (y > 30 && this.phase === "wide") {
+        this.phase = "expanded";
+        this.setNav("expanded");
+        clearTimeout(this.navTimer);
+        this.navTimer = setTimeout(() => {
+          if (window.scrollY > 30) { this.phase = "compact"; this.setNav("compact"); }
+        }, 620);
+      } else if (y <= 30 && this.phase !== "wide") {
+        clearTimeout(this.navTimer);
+        this.phase = "wide";
+        this.setNav("wide");
+      }
+      const f = this.footerRef.current, g = this.glassRef.current;
+      if (f && g) {
+        const d = f.getBoundingClientRect().top - window.innerHeight;
+        g.style.opacity = String(Math.max(0, Math.min(1, (d + 380) / 380)));
+      }
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+
+    this.onResize = () => {
+      const w = window.innerWidth;
+      const compact = w < 900;
+      if (this.linksRef.current) this.linksRef.current.style.display = compact ? "none" : "flex";
+      if (this.burgerRef.current) this.burgerRef.current.style.display = compact ? "flex" : "none";
+      if (this.waLabelRef.current) this.waLabelRef.current.style.display = w < 560 ? "none" : "inline";
+      if (this.waRef.current) this.waRef.current.style.padding = w < 560 ? "11px" : "11px 22px";
+      if (!compact && this.state.menuOpen) this.setState({ menuOpen: false });
+    };
+    window.addEventListener("resize", this.onResize, { passive: true });
+    this.onResize();
+    this.onScroll();
+
+    const v = this.videoRef.current;
+    if (v) {
+      v.muted = true;
+      const kick = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+      kick();
+      v.addEventListener("pause", kick);
+      v.addEventListener("stalled", kick);
+      this.vKick = setInterval(() => { if (v.paused) kick(); }, 2000);
+    }
+
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = "1";
+          e.target.style.transform = "none";
+          setTimeout(() => { e.target.style.willChange = "auto"; }, 900);
+          this.io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "110px 0px 110px 0px", threshold: 0 });
+
+    this.scan = () => {
+      document.querySelectorAll("[data-reveal]:not([data-seen])").forEach((el, i) => {
+        el.setAttribute("data-seen", "1");
+        el.style.opacity = "0";
+        el.style.transform = "translateY(34px)";
+        el.style.transition = "opacity .8s cubic-bezier(.16,1,.3,1) " + (i % 3) * 110 + "ms, transform .8s cubic-bezier(.16,1,.3,1) " + (i % 3) * 110 + "ms";
+        el.style.willChange = "opacity, transform";
+        this.io.observe(el);
+      });
+    };
+    this.scan();
+    let n = 0;
+    this.scanTimer = setInterval(() => { this.scan(); if (++n > 30) clearInterval(this.scanTimer); }, 250);
+
+    this.type = setInterval(() => {
+      const t = TESTIMONIALS[this.state.ti];
+      if (this.state.chars < t.quote.length) {
+        this.setState((s) => ({ chars: Math.min(s.chars + 2, t.quote.length) }));
+      } else if (!this.pending) {
+        this.pending = setTimeout(() => {
+          this.pending = null;
+          this.setState((s) => ({ ti: (s.ti + 1) % TESTIMONIALS.length, chars: 0 }));
+        }, 3200);
+      }
+    }, 22);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
+    window.removeEventListener("resize", this.onResize);
+    clearInterval(this.type);
+    clearInterval(this.scanTimer);
+    clearInterval(this.vKick);
+    clearTimeout(this.pending);
+    clearTimeout(this.navTimer);
+    if (this.io) this.io.disconnect();
+  }
+
+  renderVals() {
+    const t = TESTIMONIALS[this.state.ti];
+    const active = this.state.filter;
+    const list = active === "TODOS" ? CATALOG : CATALOG.filter((p) => p.g === active);
+    return {
+      navRef: this.navRef,
+      logoRef: this.logoRef,
+      linksRef: this.linksRef,
+      glowRef: this.glowRef,
+      burgerRef: this.burgerRef,
+      waRef: this.waRef,
+      waLabelRef: this.waLabelRef,
+      videoRef: this.videoRef,
+      footerRef: this.footerRef,
+      glassRef: this.glassRef,
+      panelDisplay: this.state.menuOpen ? "flex" : "none",
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      cats: CATS.concat(CATS).concat(CATS).concat(CATS).map((c, i) => ({ ...c, bg: "url('" + c.icon + "')", key: i })),
+      featured: FEATURED,
+      filters: FILTERS.map((f) => ({
+        label: f,
+        bg: f === active ? "#6C19FF" : "#FFFFFF",
+        fg: f === active ? "#F5F3FF" : "#19002F",
+        border: f === active ? "#6C19FF" : "rgba(25,0,47,0.14)",
+        onClick: () => this.setState({ filter: f })
+      })),
+      products: list,
+      typed: t.quote.slice(0, this.state.chars),
+      tName: t.name,
+      tRole: t.role,
+      tPhoto: t.photo,
+      tPos: t.pos,
+      dots: TESTIMONIALS.map((x, i) => ({
+        w: i === this.state.ti ? "22px" : "7px",
+        bg: i === this.state.ti ? "#6C19FF" : "rgba(25,0,47,0.18)",
+        onClick: () => { clearTimeout(this.pending); this.pending = null; this.setState({ ti: i, chars: 0 }); }
+      })),
+      onGlow: (e) => {
+        const el = this.glowRef.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--gx", (e.clientX - r.left) + "px");
+        el.style.setProperty("--gy", (e.clientY - r.top) + "px");
+        el.style.textShadow = "0 0 46px rgba(196,92,255,0.75)";
+      },
+      offGlow: () => {
+        const el = this.glowRef.current;
+        if (!el) return;
+        el.style.setProperty("--gx", "-999px");
+        el.style.setProperty("--gy", "-999px");
+        el.style.textShadow = "0 0 34px rgba(196,92,255,0.45)";
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
